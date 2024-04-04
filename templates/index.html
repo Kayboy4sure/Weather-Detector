@@ -1,0 +1,49 @@
+{% load static %}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            margin: 30px 200px;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        header {
+            background-color: aqua;
+            border: 20px solid aqua;
+        }
+    </style>
+</head>
+<body>
+    <header>
+            <h1>KAY WEATHER DETECTOR</h1>
+    </header>
+    <section>
+        <div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" name="city" placeholder="City" size="60px" id="city">
+                <input type="submit" value="search">
+            </form>
+        </div>
+        <div>
+            <h1>City : {{city}}</h1>
+            <h2>Country code : </h2>
+            <h3>Coordinate : </h3>
+            <h3>Temperature : </h3>
+            <h5>Pressure : </h5>
+            <h5>Humidity : </h5>
+        </div>
+    </section>
+    <footer>
+        <nav>info</nav>
+    </footer>
+</body>
+</html>
