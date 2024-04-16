@@ -12,7 +12,7 @@ def index(request):
             data = {}
         else:
             res = urllib.request.urlopen(
-                'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=cb771e45ac79a4e8e2205c0ce66ff633').read()
+                'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=2a8c7587979f9cdd04728fb119584ba1').read()
             json_data = json.loads(res)
             data = {
                 "country_code": str(json_data['sys']['country']),
