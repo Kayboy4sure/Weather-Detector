@@ -1,49 +1,57 @@
-{% load static %}
-
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        div {
-            margin: 30px 200px;
-        }
-        a {
-            text-decoration: none;
-            color: black;
-        }
-        header {
-            background-color: aqua;
-            border: 20px solid aqua;
-        }
-    </style>
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Kay Weather</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 </head>
+
 <body>
-    <header>
-            <h1>KAY WEATHER DETECTOR</h1>
-    </header>
-    <section>
-        <div>
-            <form action="" method="POST">
-                {% csrf_token %}
-                <input type="text" name="city" placeholder="City" size="60px" id="city">
-                <input type="submit" value="search">
-            </form>
+<nav class="row" style="background: skyblue; color: white;">
+    <div style="align-content: center;"><h1 style="text-align: center;">City Weather Detector</h1></div>
+</nav>
+<br/>
+<br/>
+<center class="row">
+    <form action="" class="col-md-6 col-md-offset-3" method="post">
+        {% csrf_token %}
+        <div class="input-group">
+            <input class="form-control" name="city" placeholder="Search" type="text">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
         </div>
-        <div>
-            <h1>City : {{city}}</h1>
-            <h2>Country code : </h2>
-            <h3>Coordinate : </h3>
-            <h3>Temperature : </h3>
-            <h5>Pressure : </h5>
-            <h5>Humidity : </h5>
-        </div>
-    </section>
-    <footer>
-        <nav>info</nav>
-    </footer>
+    </form>
+</center>
+<div class="row">
+    {% if data.country_code %}
+    <div class="col-md-6 col-md-offset-3">
+        <h1>{{city}}</h1>
+        <h3>Country code : {{data.country_code}}</h3>
+        <h4>Weather : {{data.weather}}</h4>
+        <h5>description : {{data.description}}</h5>
+        <h5>Coordinate lat : {{data.coordinate}}</h5>
+        <h5>Temp : {{data.temp}}</h5>
+        <h5>Pressure : {{data.pressure}} </h5>
+        <h5>Humidity : {{data.humidity}}</h5>
+    </div>
+    <div style="text-align: center;">
+        <iframe src="https://maps.google.com/maps?q='+{{city}}+'&hl=en&z=14&amp;output=embed" width="80%" height="500" frameborder="0" style="border:0;" allowfullscreen></iframe>
+    </div>
+    {% endif %}
+</div>
 </body>
 </html>
